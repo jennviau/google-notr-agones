@@ -1,7 +1,7 @@
 apiVersion: "agones.dev/v1"
 kind: GameServer
 metadata:
-  generateName: "simple-game-server-"
+  name: minetest
 spec:
   ports:
   - name: default
