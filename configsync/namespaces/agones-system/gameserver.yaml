@@ -12,10 +12,3 @@ spec:
       containers:
       - name: minetest
         image: paulhkim80/agones-example-minetest:1.0.0
-        resources:
-          requests:
-            memory: "64Mi"
-            cpu: "20m"
-          limits:
-            memory: "64Mi"
-            cpu: "20m"
