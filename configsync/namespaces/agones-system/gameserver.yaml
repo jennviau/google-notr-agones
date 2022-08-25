@@ -1,14 +1,14 @@
-apiVersion: "agones.dev/v1"
-kind: GameServer
-metadata:
-  name: minetest
-spec:
-  ports:
-  - name: default
-    portPolicy: Dynamic
-    containerPort: 7654
-  template:
-    spec:
-      containers:
-      - name: minetest
-        image: paulhkim80/agones-example-minetest:1.0.0
+# apiVersion: "agones.dev/v1"
+# kind: GameServer
+# metadata:
+#   name: minetest
+# spec:
+#   ports:
+#   - name: default
+#     portPolicy: Dynamic
+#     containerPort: 7654
+#   template:
+#     spec:
+#       containers:
+#       - name: minetest
+#         image: paulhkim80/agones-example-minetest:1.0.0
