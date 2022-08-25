@@ -1,7 +1,3 @@
-locals {
-  module_version = "v16.0.0"
-}
-
 resource "google_project_service" "project" {
   for_each = toset(var.list_of_services)
 
@@ -11,7 +7,7 @@ resource "google_project_service" "project" {
 }
 
 module "agones-cluster" {
-  source = format("git@github.com:GoogleCloudPlatform/cloud-foundation-fabric.git//modules/gke-cluster?ref=%s", local.module_version)
+  source = "git@github.com:GoogleCloudPlatform/cloud-foundation-fabric.git//modules/gke-cluster?ref=v16.0.0"
 
   project_id               = var.project_id
   name                     = var.gke_cluster_name
@@ -31,7 +27,7 @@ module "agones-cluster" {
 }
 
 module "agones-cluster-nodepool" {
-  source = format("git@github.com:GoogleCloudPlatform/cloud-foundation-fabric.git//modules/gke-nodepool?ref=%s", local.module_version)
+  source = "git@github.com:GoogleCloudPlatform/cloud-foundation-fabric.git//modules/gke-nodepool?ref=v16.0.0"
 
   project_id         = var.project_id
   cluster_name       = module.agones-cluster.name
@@ -43,7 +39,7 @@ module "agones-cluster-nodepool" {
 }
 
 module "gke-hub" {
-  source = format("git@github.com:GoogleCloudPlatform/cloud-foundation-fabric.git//modules/gke-hub?ref=%s", local.module_version)
+  source = "git@github.com:GoogleCloudPlatform/cloud-foundation-fabric.git//modules/gke-hub?ref=v16.0.0"
 
   project_id = var.project_id
 
