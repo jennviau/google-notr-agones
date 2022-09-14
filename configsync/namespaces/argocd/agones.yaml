@@ -5,21 +5,22 @@ metadata:
   namespace: argocd
 spec:
   destination:
+    name: ''
     namespace: agones-system
     server: 'https://kubernetes.default.svc'
   source:
+    path: ''
     repoURL: 'https://agones.dev/chart/stable'
     targetRevision: 1.25.0
     chart: agones
-  project: default
-  helm:
-    parameters:
+    helm:
+      parameters:
         - name: agones.ping.install
-          value: false
+          value: 'false'
+  project: default
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
-    
