@@ -2,7 +2,6 @@ apiVersion: "agones.dev/v1"
 kind: GameServer
 metadata:
   name: minetest
-  namespace: agones-system
 spec:
   ports:
   - name: default
