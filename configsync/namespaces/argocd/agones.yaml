@@ -12,9 +12,14 @@ spec:
     targetRevision: 1.25.0
     chart: agones
   project: default
+  helm:
+    parameters:
+        - name: agones.ping.install
+          value: false
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
+    

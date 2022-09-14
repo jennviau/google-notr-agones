@@ -7,7 +7,7 @@ resource "google_project_service" "project" {
 }
 
 module "agones-cluster" {
-  source = "git@github.com:GoogleCloudPlatform/cloud-foundation-fabric.git//modules/gke-cluster?ref=v16.0.0"
+  source = "git@github.com:GoogleCloudPlatform/cloud-foundation-fabric.git//modules/gke-cluster?ref=v18.0.0"
 
   project_id               = var.project_id
   name                     = var.gke_cluster_name
@@ -27,7 +27,7 @@ module "agones-cluster" {
 }
 
 module "agones-cluster-nodepool" {
-  source = "git@github.com:GoogleCloudPlatform/cloud-foundation-fabric.git//modules/gke-nodepool?ref=v16.0.0"
+  source = "git@github.com:GoogleCloudPlatform/cloud-foundation-fabric.git//modules/gke-nodepool?ref=v18.0.0"
 
   project_id         = var.project_id
   cluster_name       = module.agones-cluster.name
@@ -36,6 +36,7 @@ module "agones-cluster-nodepool" {
   initial_node_count = var.gke_initial_node_count
   node_machine_type  = var.gke_node_type
   node_preemptible   = true
+  node_tags          = ["google-notr-agones"]
 }
 
 module "gke-hub" {
