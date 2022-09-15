@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: my-release-cert
+  namespace: agones-system
+spec:
+  dnsNames:
+    - agones-controller-service.agones-system.svc
+  secretName: my-release-cert
+  issuerRef:
+    name: selfsigned
+    kind: ClusterIssuer

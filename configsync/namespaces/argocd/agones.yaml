@@ -13,10 +13,6 @@ spec:
     repoURL: 'https://agones.dev/chart/stable'
     targetRevision: 1.25.0
     chart: agones
-    helm:
-      parameters:
-        - name: agones.ping.install
-          value: 'false'
   project: default
   syncPolicy:
     automated:
@@ -24,3 +20,35 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
+    helm:
+      parameters:
+        - name: agones.ping.install
+          value: 'false'
+        - name: agones.controller.disableSecret
+          value: 'true'
+        - name: agones.controller.customCertSecretPath[0].key
+          value: 'ca.crt'
+        - name: agones.controller.customCertSecretPath[0].path
+          value: 'ca.crt'
+        - name: agones.controller.customCertSecretPath[1].key
+          value: 'tls.crt'
+        - name: agones.controller.customCertSecretPath[1].path
+          value: 'server.crt'
+        - name: agones.controller.customCertSecretPath[2].key
+          value: 'tls.key'
+        - name: agones.controller.customCertSecretPath[2].path
+          value: 'server.key'
+        - name: agones.controller.generateTLS
+          value: 'false'
+        - name: agones.controller.allocationApiService.annotations
+          value: {'cert-manager.io/inject-ca-from': 'agones-system/my-release-cert'}
+        - name: agones.controller.validatingWebhook.annotations
+          value: {'cert-manager.io/inject-ca-from': 'agones-system/my-release-cert'}
+        - name: agones.controller.validatingWebhook.disableCaBundle
+          value: 'true'
+        - name: agones.controller.mutatingWebhook.disableCaBundle
+          value: 'true'
+        - name: agones.controller.mutatingWebhook.annotations
+          value: {'cert-manager.io/inject-ca-from': 'agones-system/my-release-cert'}
+
+        
