@@ -5,11 +5,9 @@ metadata:
   namespace: argocd
 spec:
   destination:
-    name: ''
     namespace: agones-system
     server: 'https://kubernetes.default.svc'
   source:
-    path: ''
     repoURL: 'https://agones.dev/chart/stable'
     targetRevision: 1.26.0
     chart: agones

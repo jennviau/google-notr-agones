@@ -12,7 +12,7 @@ variable "gke_cluster_name" {
 variable "gke_node_type" {
   description = "Node type for the cluster."
   type        = string
-  default     = "e2-medium"
+  default     = "e2-standard-4"
 }
 
 variable "gke_initial_node_count" {
