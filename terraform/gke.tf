@@ -6,8 +6,8 @@
 #   disable_dependent_services = true
 # }
 
-module "agones-cluster" {
-  source = "git@github.com:GoogleCloudPlatform/cloud-foundation-fabric.git//modules/gke-cluster?ref=v18.0.0"
+module "agones-gcp-cluster" {
+  source = "git@github.com:GoogleCloudPlatform/cloud-foundation-fabric.git//modules/gke-cluster?ref=v16.0.0"
 
   project_id               = var.project_id
   name                     = var.gke_cluster_name
@@ -26,13 +26,13 @@ module "agones-cluster" {
   # ]
 }
 
-module "agones-cluster-nodepool" {
-  source = "git@github.com:GoogleCloudPlatform/cloud-foundation-fabric.git//modules/gke-nodepool?ref=v18.0.0"
+module "agones-gcp-nodepool" {
+  source = "git@github.com:GoogleCloudPlatform/cloud-foundation-fabric.git//modules/gke-nodepool?ref=v16.0.0"
 
   project_id         = var.project_id
-  cluster_name       = module.agones-cluster.name
+  cluster_name       = module.agones-gcp-cluster.name
   location           = var.location
-  name               = format("%s-nodepool", module.agones-cluster.name)
+  name               = format("%s-nodepool", module.agones-gcp-cluster.name)
   initial_node_count = var.gke_initial_node_count
   node_machine_type  = var.gke_node_type
   node_preemptible   = true
@@ -45,7 +45,9 @@ module "gke-hub" {
   project_id = var.project_id
 
   member_clusters = {
-    agones-cluster = module.agones-cluster.id
+    agones-gcp-cluster   = module.agones-gcp-cluster.id
+    agones-aws-cluster   = module.agones-aws-cluster.id
+    agones-azure-cluster = module.agones-azure-cluster.id
   }
 
   member_features = {
