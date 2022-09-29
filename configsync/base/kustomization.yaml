@@ -1,0 +1,9 @@
+# ./configsync/base/kustomization.yaml
+helmCharts:
+- name: cert-manager
+  repo: https://charts.jetstack.io
+  version: v1.5.3
+  releaseName: my-cert-manager
+  namespace: cert-manager
+  valuesInline:
+    installCRDs: true
