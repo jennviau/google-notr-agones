@@ -3,7 +3,14 @@ helmCharts:
 - name: cert-manager
   repo: https://charts.jetstack.io
   version: v1.5.3
-  releaseName: my-cert-manager
+  releaseName: cert-manager
   namespace: cert-manager
   valuesInline:
     installCRDs: true
+- name: agones-system
+  repo: https://agones.dev/chart/stable
+  version: 1.26.0
+  releaseName: agones
+  namespace: agones-system
+  valuesInline:
+    agones.ping.install: false
