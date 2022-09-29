@@ -7,9 +7,9 @@ helmCharts:
   namespace: cert-manager
   valuesInline:
     installCRDs: true
-- name: agones-system
+- name: agones
   repo: https://agones.dev/chart/stable
-  version: '1.26.0'
+  version: 1.26.0
   releaseName: agones
   namespace: agones-system
   valuesInline:
