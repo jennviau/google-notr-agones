@@ -13,4 +13,6 @@ helmCharts:
   releaseName: agones
   namespace: agones-system
   valuesInline:
-    agones.ping.install: false
+    agones:
+      ping:
+        install: false
