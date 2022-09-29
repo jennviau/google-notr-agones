@@ -1,0 +1,45 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: octops-ingress-controller
+  name: octops-ingress-controller
+  namespace: octops-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: octops-ingress-controller
+  template:
+    metadata:
+      labels:
+        app: octops-ingress-controller
+    spec:
+      serviceAccountName: octops
+      containers:
+        - image: octops/gameserver-ingress-controller:0.2.2 # Latest release
+          name: controller
+          ports:
+            - containerPort: 30235
+              name: healthz
+            - containerPort: 9090
+              name: metrics
+          args:
+            - --sync-period=15s
+          imagePullPolicy: Always
+          resources:
+            requests:
+              cpu: "0.5"
+              memory: "50Mi"
+            limits:
+              cpu: "1"
+              memory: "150Mi"
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 30235
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 30235
