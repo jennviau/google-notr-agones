@@ -9,7 +9,7 @@ helmCharts:
     installCRDs: true
 - name: agones-system
   repo: https://agones.dev/chart/stable
-  version: v1.26.0
+  version: '1.26.0'
   releaseName: agones
   namespace: agones-system
   valuesInline:
