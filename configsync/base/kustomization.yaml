@@ -1,17 +1,18 @@
-# ./configsync/base/kustomization.yaml
-helmCharts:
-- name: cert-manager
-  repo: https://charts.jetstack.io
-  version: v1.5.3
-  releaseName: cert-manager
-  namespace: cert-manager
-  valuesInline:
-    installCRDs: true
-- name: agones
-  repo: https://agones.dev/chart/stable
-  version: 1.26.0
-  releaseName: agones
-  valuesInline:
-    agones:
-      ping:
-        install: false
+# # ./configsync/base/kustomization.yaml
+# helmCharts:
+# - name: cert-manager
+#   repo: https://charts.jetstack.io
+#   version: v1.5.3
+#   releaseName: cert-manager
+#   namespace: cert-manager
+#   valuesInline:
+#     installCRDs: true
+# - name: agones
+#   repo: https://agones.dev/chart/stable
+#   version: 1.26.0
+#   releaseName: agones
+#   namespace: agones-system
+#   valuesInline:
+#     agones:
+#       ping:
+#         install: false
