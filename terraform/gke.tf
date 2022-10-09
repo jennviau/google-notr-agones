@@ -6,7 +6,7 @@
 #   disable_dependent_services = true
 # }
 
-module "agones-cluster" {
+module "agones-gcp-cluster" {
   source = "git@github.com:GoogleCloudPlatform/cloud-foundation-fabric.git//modules/gke-cluster?ref=v18.0.0"
 
   project_id               = var.project_id
@@ -26,48 +26,16 @@ module "agones-cluster" {
   # ]
 }
 
-module "agones-cluster-nodepool" {
+module "agones-gcp-cluster-nodepool" {
   source = "git@github.com:GoogleCloudPlatform/cloud-foundation-fabric.git//modules/gke-nodepool?ref=v18.0.0"
 
   project_id         = var.project_id
-  cluster_name       = module.agones-cluster.name
+  cluster_name       = module.agones-gcp-cluster.name
   location           = var.location
-  name               = format("%s-nodepool", module.agones-cluster.name)
+  name               = format("%s-nodepool", module.agones-gcp-cluster.name)
   initial_node_count = var.gke_initial_node_count
   node_machine_type  = var.gke_node_type
   node_preemptible   = true
   node_tags          = ["google-notr-agones"]
 }
 
-module "gke-hub" {
-  source = "git@github.com:GoogleCloudPlatform/cloud-foundation-fabric.git//modules/gke-hub?ref=v16.0.0"
-
-  project_id = var.project_id
-
-  member_clusters = {
-    agones-cluster = module.agones-cluster.id
-  }
-
-  member_features = {
-    configmanagement = {
-      binauthz = true
-      config_sync = {
-        gcp_service_account_email = null
-        https_proxy               = null
-        policy_dir                = "configsync"
-        secret_type               = "none"
-        source_format             = "unstructured"
-        sync_branch               = "main"
-        sync_repo                 = var.configsync_repo
-        sync_rev                  = null
-      }
-      hierarchy_controller = null
-      policy_controller    = null
-      version              = "1.12.2"
-    }
-  }
-
-  depends_on = [
-    module.agones-cluster-nodepool
-  ]
-}
