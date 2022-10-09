@@ -3,3 +3,5 @@
 *.tfvars
 *.terraform*
 .DS_Store
+vars.sh
+
