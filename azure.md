@@ -6,7 +6,7 @@ The Anthos on **Azure Cluster full Terraform** references area here:
  - [Node Pool](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_azure_node_pool)
  - [Azure Client](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_azure_client)
 
-![Anthos Multi-Cloud](Anthos-Multi-Azure.png)
+![Anthos Multi-Cloud](images/Anthos-Multi-Azure.png)
 
  **The Terraform script deploys Anthos GKE with:**
 - 3 control plane nodes _(1 in each AZ)_ of type [Standard_B2s](https://docs.microsoft.com/en-us/azure/virtual-machines/sizes-b-series-burstable)
