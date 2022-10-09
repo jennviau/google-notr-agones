@@ -37,5 +37,9 @@ module "agones-gcp-cluster-nodepool" {
   node_machine_type  = var.gke_node_type
   node_preemptible   = true
   node_tags          = ["google-notr-agones"]
+  autoscaling_config = {
+    min_node_count = 3
+    max_node_count = 5
+  }
 }
 
