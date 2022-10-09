@@ -2,3 +2,4 @@
 *.tfplan
 *.tfvars
 *.terraform*
+.DS_Store

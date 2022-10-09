@@ -14,33 +14,6 @@
  * limitations under the License.
  */
 
-output "fleet_membership" {
-  value = google_container_azure_cluster.this.fleet[0].membership
-}
-output "resource_group_id" {
-  description = "The id of the cluster resource group"
-  value       = azurerm_resource_group.cluster.id
-}
-
-output "subnet_id" {
-  description = "The ID of the subnet"
-  value       = azurerm_subnet.default.id
-}
-
-output "subnet_address_prefixes" {
-  description = "The address prefixes of the subnet"
-  value       = azurerm_subnet.default.address_prefixes
-}
-
-output "vnet_id" {
-  description = "The ID of the vnet"
-  value       = azurerm_virtual_network.vnet.id
-}
-
-output "location" {
-  description = "The location/region of vnet"
-  value       = azurerm_virtual_network.vnet.location
-}
 output "subscription_id" {
   description = "The ID of the subscription"
   value       = data.azurerm_subscription.current.subscription_id
@@ -65,16 +38,3 @@ output "aad_app_sp_obj_id" {
   description = "The object id of the aad service principal"
   value       = azuread_service_principal.aad_app.object_id
 }
-
-output "certificate" {
-  value = google_container_azure_client.this.certificate
-}
-
-output "client" {
-  value = google_container_azure_client.this.id
-}
-
-output "client_name" {
-  value = google_container_azure_client.this.name
-}
-
