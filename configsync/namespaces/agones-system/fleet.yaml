@@ -4,7 +4,7 @@ kind: Fleet
 metadata:
   name: minetest
 spec:
-  replicas: 3
+  replicas: 2
   scheduling: Packed
   strategy:
     type: RollingUpdate
@@ -16,7 +16,7 @@ spec:
       annotations:
         octops-kubernetes.io/ingress.class: "nginx"
         octops.io/gameserver-ingress-mode: "domain"
-        octops.io/gameserver-ingress-domain: "example.com"
+        octops.io/gameserver-ingress-domain: "notr.demo"
         octops.io/terminate-tls: "true"
         octops.io/issuer-tls-name: "selfsigned"
       labels:
