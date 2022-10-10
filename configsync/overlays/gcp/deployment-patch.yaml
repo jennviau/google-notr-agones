@@ -3,8 +3,7 @@ kind: Deployment
 metadata:
   name: external-dns
   namespace: external-dns
-  annotations: 
-      configsync.gke.io/cluster-name-selector: demo-agones-gcp-cluster		
+
 spec:
   strategy:
     type: Recreate
@@ -18,5 +17,16 @@ spec:
     spec:
       containers:
         - args:
-            - --txt-owner-id="demo-agones-gcp-cluster"
+            - --source=ingress
+            - --source=service
+            - --domain-filter=games.automateit.ca
+            - --provider=google
+            - --google-project="notr-2022-anthos-364917"
+            - --registry=txt
+            - --txt-owner-id="agones-gcp-cluster"
+          image: k8s.gcr.io/external-dns/external-dns:v0.8.0
+          name: external-dns
+      securityContext:
+        fsGroup: 65534
+        runAsUser: 65534
       serviceAccountName:  external-dns-sa-gcp

@@ -1,4 +1,5 @@
 resources:
-- overlays/aws
-- overlays/gcp
+
 - overlays/azure
+- overlays/gcp
+- overlays/aws

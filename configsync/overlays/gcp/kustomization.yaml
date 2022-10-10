@@ -1,8 +1,21 @@
 namespace: external-dns
 
-bases:
+resources:
 - ../../base/external-dns
-patchesStrategicMerge: 
-- clusterrolebind-patch.yaml
-- serviceaccount-patch.yaml
-- deployment-patch.yaml
+
+patches:
+- path: serviceaccount-patch.yaml
+  target:
+    kind: ServiceAccount
+- path: deployment-patch.yaml
+  target:
+    kind: Deployment
+- path: clusterrolebinding-patch.yaml
+  target:
+    kind: ClusterRoleBinding
+
+nameSuffix:
+  -gcp
+
+commonAnnotations: 
+      configsync.gke.io/cluster-name-selector: demo-agones-gcp-cluster	

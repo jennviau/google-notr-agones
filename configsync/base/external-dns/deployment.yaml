@@ -18,11 +18,10 @@ spec:
         - args:
             - --source=ingress
             - --source=service
-            - --domain-filter=games.automateit.ca
+            - --domain-filter=example.com
             - --provider=google
-            - --google-project="notr-2022-anthos-364917"
+            - --google-project="example-project"
             - --registry=txt
-
           image: k8s.gcr.io/external-dns/external-dns:v0.8.0
           name: external-dns
       securityContext:
