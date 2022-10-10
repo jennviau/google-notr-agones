@@ -3,3 +3,4 @@ resources:
 - overlays/azure
 - overlays/gcp
 - overlays/aws
+- overlays/aks
