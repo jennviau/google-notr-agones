@@ -1,4 +1,4 @@
 resources:
-- aws
-- gcp
-- azure
+- overlays/aws
+- overlays/gcp
+- overlays/azure
