@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: external-dns
+  namespace: external-dns
+  annotations: 
+      configsync.gke.io/cluster-name-selector: demo-agones-gcp-cluster		
+spec:
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: external-dns
+  template:
+    metadata:
+      labels:
+        app: external-dns
+    spec:
+      containers:
+        - args:
+            - --txt-owner-id="demo-agones-gcp-cluster"
+      serviceAccountName:  external-dns-sa-gcp
