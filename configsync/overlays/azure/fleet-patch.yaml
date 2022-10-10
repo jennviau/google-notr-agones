@@ -1,0 +1,35 @@
+---
+apiVersion: "agones.dev/v1"
+kind: Fleet
+metadata:
+  name: minetest
+spec:
+  replicas: 2
+  scheduling: Packed
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  template:
+    metadata:
+      annotations:
+        octops-kubernetes.io/ingress.class: "nginx"
+        octops.io/gameserver-ingress-mode: "domain"
+        octops.io/gameserver-ingress-domain: "games.automateit.ca"
+        octops.io/terminate-tls: "true"
+        octops.io/issuer-tls-name: "selfsigned"
+        octops-external-dns.alpha.kubernetes.io/hostname: "aws.games.automateit.ca"
+      labels:
+        game: minetest
+    spec:
+      ports:
+      - name: default
+        portPolicy: Static
+        hostPort: 7500
+        containerPort: 30000
+      template:
+        spec:
+          containers:
+          - name: minetest
+            image: paulhkim80/agones-example-minetest:1.0.0

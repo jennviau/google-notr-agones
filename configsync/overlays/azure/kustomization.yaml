@@ -13,7 +13,9 @@ patches:
 - path: clusterrolebinding-patch.yaml
   target:
     kind: ClusterRoleBinding
-
+- path: fleet-patch.yaml
+  target: 
+    kind: Fleet
 nameSuffix:
   -azure
 
