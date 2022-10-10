@@ -1,5 +1,8 @@
 resources:
 - external-dns
 - agones-system
+- cert-manager
+- argo-cd
+- octops-system
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
