@@ -5,7 +5,6 @@ module "gke-hub" {
 
  clusters = {
     demo-agones-gcp-cluster = module.agones-gcp-cluster.id
-#    demo-agones-azure-cluster = "projects/notr-2022-anthos-364917/locations/us-east4/clusters/agnones-azure-cluster"
   }
 
  features = {
@@ -46,6 +45,6 @@ module "gke-hub" {
 
   depends_on = [
     module.agones-gcp-cluster-nodepool,
-    module.agones-azure-cluster
+
   ]
 }

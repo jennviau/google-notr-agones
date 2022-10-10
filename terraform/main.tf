@@ -21,7 +21,9 @@ provider "azurerm" {
 
 provider "azuread" {
 }
-
+provider "aws" {
+  region = var.aws_region
+}
 
 resource "tls_private_key" "anthos_ssh_key" {
   algorithm = "RSA"
