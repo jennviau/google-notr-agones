@@ -20,4 +20,4 @@ nameSuffix:
   -aks
 
 commonAnnotations: 
-      configsync.gke.io/cluster-name-selector: agnones-aks-cluster	
+      configsync.gke.io/cluster-name-selector: agones-aks-cluster	
