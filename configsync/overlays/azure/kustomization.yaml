@@ -1,8 +1,8 @@
 namespace: external-dns
 
-bases:
+resources:
 - ../../base/external-dns
 patchesStrategicMerge: 
-- clusterrolebind-patch.yaml
+- clusterrolebinding-patch.yaml
 - serviceaccount-patch.yaml
 - deployment-patch.yaml

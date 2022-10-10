@@ -1,6 +1,0 @@
-
-
-resources:
-- external-dns/service-account.yaml
-- external-dns/deployment.yaml
-- external-dns/clusterrolebinding.yaml
